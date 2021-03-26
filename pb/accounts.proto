@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "github.com/nacobas/accounts/pb";
+
+
+service AccountService {
+    rpc Open(OpenRequest) returns (OpenResponse);
+    rpc Close(CloseRequest) returns(CloseReponse);
+    rpc SetRestriction (SetRestrictionRequest) returns (SetRestrictionResponse);
+}
+
+message Account{
+    uint32 product_code = 1;
+    string account_id = 2;
+    string account_number = 3;
+}
+
+message OpenRequest {
+    uint32 product_code = 1;
+}
+
+message OpenResponse {
+    Account account = 1;
+}
+
+message CloseRequest {
+    string account_id = 1;
+}
+
+message CloseReponse {
+    string account_id = 1;
+}
+
+message SetRestrictionRequest {
+    int32 level = 1;
+    string account_id = 2;
+}
+
+message SetRestrictionResponse {
+    string msg = 1;
+}
